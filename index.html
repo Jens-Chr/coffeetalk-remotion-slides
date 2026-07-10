@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Videos as Code | Remotion und Codex</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section
+          data-markdown="slides.md"
+          data-separator="^\n---\n$"
+          data-separator-notes="^Note:"
+          data-charset="utf-8"
+        ></section>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/markdown/markdown.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/notes/notes.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/highlight/highlight.js"></script>
+    <script>
+      const contentSlides = () =>
+        [...document.querySelectorAll(".reveal .slides > section")].filter(
+          (section) => !section.classList.contains("stack"),
+        );
+
+      const applyMarkdownFragments = () => {
+        const selectors = [
+          ".content-slide > ul > li",
+          ".content-slide table tbody tr",
+          ".content-slide .callout",
+          ".workflow .step",
+          ".workflow .arrow",
+          ".content-slide .icon-card",
+          ".mini-workflow span",
+          ".statement-slide .keyword-row span",
+        ];
+
+        document.querySelectorAll(selectors.join(",")).forEach((element) => {
+          element.classList.add("fragment");
+        });
+      };
+
+      const prepareFitWrappers = () => {
+        contentSlides().forEach((section) => {
+          if (section.querySelector(":scope > .slide-fit")) {
+            return;
+          }
+
+          const wrapper = document.createElement("div");
+          wrapper.className = "slide-fit";
+
+          [...section.childNodes].forEach((node) => {
+            if (node.nodeType === Node.ELEMENT_NODE && node.matches("aside.notes")) {
+              return;
+            }
+            wrapper.appendChild(node);
+          });
+
+          section.insertBefore(wrapper, section.firstChild);
+        });
+      };
+
+      const fitSlides = () => {
+        const safeHeight = 620;
+
+        contentSlides().forEach((section) => {
+          const wrapper = section.querySelector(":scope > .slide-fit");
+          if (!wrapper) {
+            return;
+          }
+
+          wrapper.style.transform = "";
+          wrapper.style.width = "";
+          wrapper.style.maxWidth = "";
+
+          const safeWidth = section.classList.contains("wide-slide") || section.classList.contains("title-slide")
+            ? 1160
+            : 1060;
+          wrapper.style.width = safeWidth + "px";
+          wrapper.style.maxWidth = "100%";
+
+          const width = Math.max(wrapper.scrollWidth, wrapper.getBoundingClientRect().width || 1);
+          const height = Math.max(wrapper.scrollHeight, wrapper.getBoundingClientRect().height || 1);
+          const scale = Math.min(1, safeWidth / width, safeHeight / height);
+
+          wrapper.style.transform = "scale(" + scale + ")";
+        });
+
+        Reveal.sync();
+      };
+
+      const prepareSlides = () => {
+        applyMarkdownFragments();
+        prepareFitWrappers();
+        fitSlides();
+      };
+
+      Reveal.on("ready", prepareSlides);
+      Reveal.on("slidechanged", fitSlides);
+      window.addEventListener("resize", fitSlides);
+
+      Reveal.initialize({
+        hash: true,
+        controls: true,
+        progress: true,
+        center: true,
+        width: 1280,
+        height: 720,
+        margin: 0.06,
+        transition: "slide",
+        backgroundTransition: "fade",
+        plugins: [RevealMarkdown, RevealNotes, RevealHighlight],
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,7 @@
+services:
+  slides:
+    build: .
+    container_name: coffeetalk-remotion-slides
+    ports:
+      - "8080:80"
+    restart: unless-stopped
