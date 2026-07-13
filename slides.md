@@ -102,22 +102,124 @@ Remotion kurz erklären: React rendert Frames. Aus Komponenten, Props und Daten 
 
 ---
 
-<!-- .slide: class="content-slide wide-slide" -->
+<!-- .slide: class="content-slide wide-slide ai-video-slide" -->
+
+<p class="section-kicker">KI-Videoworkflows</p>
+
+## Zwei Wege, KI für Videos zu nutzen
+
+<div class="ai-paths">
+  <article class="ai-path-card">
+    <header>
+      <span class="path-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" role="img"><path d="m15 4 5 5L9 20l-5-5L15 4Z"></path><path d="m13 6 5 5M6 4V2M5 3H3m17 12v-2m1 1h2M6 21v-2m1 1H5"></path></svg>
+      </span>
+      <h3>Prompt <span aria-hidden="true">→</span> Video</h3>
+    </header>
+    <ul>
+      <li>KI erzeugt direkt das fertige Video</li>
+      <li>Fokus auf kreative Inhalte</li>
+      <li>Änderungen erfolgen über neue Prompts</li>
+      <li>Ergebnis ist nur begrenzt reproduzierbar</li>
+      <li>Ideal für einmalige Marketing- oder Social-Media-Videos</li>
+    </ul>
+  </article>
+
+  <div class="path-divider" aria-hidden="true"><span>→</span></div>
+
+  <article class="ai-path-card highlighted">
+    <header>
+      <span class="path-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" role="img"><rect x="3" y="4" width="18" height="16" rx="2"></rect><path d="m7 9 3 3-3 3m6 0h4"></path></svg>
+      </span>
+      <h3>Prompt <span aria-hidden="true">→</span> Code <span aria-hidden="true">→</span> Video</h3>
+    </header>
+    <ul>
+      <li>KI schreibt React- und Remotion-Code</li>
+      <li>Das Video entsteht durch Software</li>
+      <li>Änderungen sind im Code nachvollziehbar</li>
+      <li>Versionierung mit Git</li>
+      <li>Ideal für Templates, Automatisierung und datengetriebene Videos</li>
+    </ul>
+  </article>
+</div>
+
+<div class="callout ai-video-callout">
+  <strong>Wir lassen die KI nicht das Video erstellen.<br>Wir lassen die KI die Software entwickeln, die das Video erzeugt.</strong>
+</div>
+
+<div class="ai-process" aria-label="Prompt zu beliebig vielen Videos">
+  <span>Prompt</span><i>→</i><span>Codex</span><i>→</i><span>React + Remotion</span><i>→</i><span>Render</span><i>→</i><strong>beliebig viele Videos</strong>
+</div>
+
+Note:
+Viele kennen KI-Videogeneratoren wie Sora oder Veo. Unser Ansatz ist ein anderer: Wir erzeugen nicht einzelne Videos, sondern entwickeln mit KI eine wiederverwendbare Videopipeline. Dadurch profitieren wir von Softwareentwicklung: Git, Komponenten, Tests, Wiederverwendbarkeit und Automatisierung.
+
+---
+
+<!-- .slide: class="content-slide wide-slide editing-slide" -->
 
 <p class="section-kicker">Vergleich</p>
 
-## Warum Code für Videos?
+## Warum Code statt Timeline?
 
-| Timeline | Remotion |
-| --- | --- |
-| Manuelle Bearbeitung | Deklarativer Code |
-| Schwer reproduzierbar | Git-Versionierung |
-| Copy & Paste | Komponenten |
-| Statisch | Datengetrieben |
-| Einzelstück | Automatisierbare Pipeline |
+<div class="ai-paths editing-compare">
+  <article class="ai-path-card editing-card">
+    <header>
+      <span class="path-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" role="img"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="M7 5v14m10-14v14M3 9h4m10 0h4M3 15h4m10 0h4"></path></svg>
+      </span>
+      <h3>Klassische Videobearbeitung</h3>
+    </header>
+    <ul>
+      <li>Arbeiten auf einer visuellen Timeline</li>
+      <li>Inhalte werden per Maus verschoben</li>
+      <li>Animationen werden manuell angepasst</li>
+      <li>Änderungen erfolgen direkt im Projekt</li>
+      <li>Optimal für individuelle, kreative Einzelprojekte</li>
+    </ul>
+    <p class="tool-examples">DaVinci Resolve <span>•</span> Final Cut Pro <span>•</span> Premiere Pro</p>
+  </article>
+
+  <div class="path-divider editing-divider" aria-hidden="true"><span>vs.</span></div>
+
+  <article class="ai-path-card editing-card highlighted">
+    <header>
+      <span class="path-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" role="img"><path d="m8 9-3 3 3 3m8-6 3 3-3 3m-3-9-2 12"></path></svg>
+      </span>
+      <h3>Videos as Code</h3>
+    </header>
+    <ul>
+      <li>Videos werden als React-Komponenten beschrieben</li>
+      <li>Layouts und Animationen entstehen im Code</li>
+      <li>Inhalte können aus Daten erzeugt werden</li>
+      <li>Änderungen sind versionierbar und reproduzierbar</li>
+      <li>Optimal für Templates, Automatisierung und skalierbare Videoproduktion</li>
+    </ul>
+    <p class="tool-examples">Remotion <span>•</span> React <span>•</span> TypeScript</p>
+  </article>
+</div>
+
+<div class="callout editing-callout">
+  <strong>Wir ersetzen keine Videoschnittsoftware.<br>Wir ergänzen sie um einen Softwareentwicklungs-Workflow.</strong>
+</div>
+
+<div class="editing-example-callout">
+  <p>Wenn ich ein <strong>einzelnes Werbevideo</strong> schneiden möchte, nutze ich DaVinci Resolve.</p>
+  <p>Wenn ich <strong>500 Videos aus unterschiedlichen Daten</strong> erzeugen möchte, nutze ich Remotion.</p>
+</div>
 
 Note:
-Nicht als Entweder-oder verkaufen. Timeline-Tools bleiben stark, aber Code ist besonders interessant, wenn Varianten, Daten oder wiederkehrende Formate wichtig sind.
+Die Frage ist nicht "Was ist besser?"
+
+Sondern: Für welchen Anwendungsfall ist welches Werkzeug geeignet?
+
+Videobearbeitungsprogramme sind hervorragend für kreative Einzelproduktionen.
+
+Remotion eignet sich besonders, wenn Videos reproduzierbar, datengetrieben, automatisiert oder als Teil einer Software entstehen sollen.
+
+Die beiden Ansätze schließen sich nicht aus, sondern ergänzen sich.
 
 ---
 
@@ -142,25 +244,79 @@ Beispiele nennen: Komponente anlegen, Timing anpassen, Layout vereinfachen, Fehl
 
 ---
 
-<!-- .slide: class="content-slide" -->
+<!-- .slide: class="content-slide wide-slide live-demo-slide" -->
 
-<p class="section-kicker">Live-Demo</p>
+<p class="section-kicker">Remotion + Codex</p>
 
-## Vom Prompt zum Video
+## Live-Demo
 
-<div class="prompt-box">
-  <span class="badge">Demo-Prompt</span>
-  <p>Erstelle einen modernen Intro-Screen für ein Produktvideo mit animierter Headline, Subline und Call-to-Action.</p>
+<p class="demo-subtitle">Von der Idee zur wiederverwendbaren Video-Komponente</p>
+
+<div class="demo-roadmap" aria-label="Vier Schritte der Live-Demo">
+  <article class="demo-stage">
+    <header>
+      <span class="demo-number">1</span>
+      <span class="path-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" role="img"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="m10 9 5 3-5 3V9Z"></path></svg>
+      </span>
+    </header>
+    <h3>Szene erzeugen</h3>
+    <p class="demo-prompt">„4-Sekunden-Intro mit Titel und Unterzeile erstellen.“</p>
+    <p class="demo-goal"><span>Ziel</span> Funktionierende Remotion-Composition</p>
+  </article>
+
+  <article class="demo-stage">
+    <header>
+      <span class="demo-number">2</span>
+      <span class="path-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" role="img"><path d="M12 3a9 9 0 1 0 0 18h1.5a1.8 1.8 0 0 0 0-3.6h-1a1.5 1.5 0 0 1 0-3H15a6 6 0 0 0 0-12h-3Z"></path><circle cx="7.5" cy="10" r=".8"></circle><circle cx="10" cy="6.8" r=".8"></circle><circle cx="15" cy="7" r=".8"></circle></svg>
+      </span>
+    </header>
+    <h3>Branding anwenden</h3>
+    <p class="demo-prompt">„Farben und Typografie ans Epikur-Branding anpassen.“</p>
+    <p class="demo-goal"><span>Ziel</span> Corporate Design per Prompt</p>
+  </article>
+
+  <article class="demo-stage">
+    <header>
+      <span class="demo-number">3</span>
+      <span class="path-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" role="img"><path d="m15 4 5 5L9 20l-5-5L15 4Z"></path><path d="m13 6 5 5M6 4V2M5 3H3m17 12v-2m1 1h2"></path></svg>
+      </span>
+    </header>
+    <h3>Animation verfeinern</h3>
+    <p class="demo-prompt">„Headline federnd, Unterzeile verzögert einblenden.“</p>
+    <p class="demo-goal"><span>Ziel</span> Iterative Verbesserung statt Neuerstellung</p>
+  </article>
+
+  <article class="demo-stage">
+    <header>
+      <span class="demo-number">4</span>
+      <span class="path-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" role="img"><path d="m8 9-3 3 3 3m8-6 3 3-3 3m-3-9-2 12"></path></svg>
+      </span>
+    </header>
+    <h3>Wiederverwendbar machen</h3>
+    <p class="demo-prompt">„Titel und Untertitel über Props konfigurierbar machen.“</p>
+    <p class="demo-goal"><span>Ziel</span> Aus der Szene wird eine Komponente</p>
+  </article>
 </div>
 
-- Farbe anpassen
-- Timing verbessern
-- Layout vereinfachen
-- Icon oder Diagramm ergänzen
-- Final rendern
+<div class="callout demo-callout">
+  <strong>Nicht nur ein Video – eine parametrisierbare Software-Komponente.</strong>
+</div>
+
+<div class="demo-result-line" aria-label="Ergebnisprozess">
+  <span>Prompt</span><i>→</i><span>Codex</span><i>→</i><span>Remotion-Szene</span><i>→</i><span>Iteration</span><i>→</i><strong>wiederverwendbare Komponente</strong>
+</div>
 
 Note:
-Hier in die Live-Demo wechseln. Vorher einen funktionierenden Remotion-Startzustand bereithalten. Ziel ist nicht Perfektion im ersten Versuch, sondern sichtbare Iteration.
+- Der erste Schritt soll bewusst klein und zuverlässig sein.
+- Der eigentliche Mehrwert entsteht durch die kurzen Folgeprompts.
+- Die Szene wird nicht jedes Mal neu generiert, sondern schrittweise weiterentwickelt.
+- Der letzte Schritt zeigt den Unterschied zu klassischer Videobearbeitung besonders deutlich.
+- Nach Einführung der Props soll der Titel in Remotion Studio live von „Videos as Code“ zu „Coffee Talk“ oder „Willkommen bei Epikur“ geändert werden.
+- Dadurch wird sichtbar, dass nicht nur ein einzelnes Video entstanden ist, sondern ein wiederverwendbares Template.
 
 ---
 
@@ -229,7 +385,7 @@ Praktischer Rat für die Live-Demo und eigene Projekte. Besonders wichtig: nicht
 
 ## Erkenntnisse
 
-- Weniger Boilerplate
+- Weniger sich wiederholende Arbeitsschritte
 - Schnelleres Prototyping
 - Mehr Experimente
 - Änderungen per Prompt
