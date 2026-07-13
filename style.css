@@ -21,7 +21,8 @@ body {
 .reveal {
   color: var(--epikur-text);
   font-family: var(--body-font);
-  font-size: 32px;
+  font-size: 36px;
+  overflow: hidden;
 }
 
 .reveal ::selection {
@@ -52,8 +53,8 @@ body {
 }
 
 .reveal h2 {
-  font-size: 58px;
-  margin-bottom: 36px;
+  font-size: 64px;
+  margin-bottom: 32px;
 }
 
 .reveal h3 {
@@ -85,7 +86,7 @@ body {
 .reveal code {
   color: #e8f8fa;
   font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
-  font-size: 21px;
+  font-size: 22px;
   line-height: 1.55;
   max-height: none;
 }
@@ -97,13 +98,12 @@ body {
 
 .content {
   margin: 0 auto;
-  max-width: 1060px;
-  padding: 18px 0;
+  max-width: 1160px;
   width: 100%;
 }
 
 .content.wide {
-  max-width: 1160px;
+  max-width: 1210px;
 }
 
 .content.center {
@@ -289,7 +289,7 @@ body {
   border-left: 8px solid var(--epikur-turquoise);
   border-radius: 8px;
   color: var(--epikur-blue);
-  font-size: 34px;
+  font-size: 32px;
   line-height: 1.25;
   padding: 34px;
 }
@@ -297,6 +297,53 @@ body {
 .callout.strong {
   background: var(--epikur-blue);
   color: var(--epikur-white);
+}
+
+/* Agenda */
+.agenda-slide h2 {
+  margin-bottom: 24px;
+}
+
+.agenda-grid {
+  display: grid;
+  gap: 18px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.agenda-card {
+  align-items: center;
+  background: var(--epikur-white);
+  border: 2px solid #dce5e9;
+  border-radius: 8px;
+  display: grid;
+  gap: 8px 20px;
+  grid-template-columns: 72px minmax(0, 1fr);
+  min-height: 176px;
+  padding: 24px 28px;
+}
+
+.agenda-number {
+  color: var(--epikur-turquoise);
+  font-family: var(--heading-font);
+  font-size: 52px;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1;
+}
+
+.agenda-card h3 {
+  font-size: 28px;
+  white-space: nowrap;
+}
+
+.agenda-card p {
+  color: var(--epikur-text);
+  font-size: 15.5px;
+  font-weight: 600;
+  grid-column: 1 / -1;
+  line-height: 1.3;
+  margin: 0;
+  white-space: nowrap;
 }
 
 .ai-video-slide h2 {
@@ -753,91 +800,31 @@ body {
   margin: 0;
 }
 
-@media (max-width: 900px) {
-  .reveal {
-    font-size: 24px;
-  }
-
-  .reveal h1 {
-    font-size: 54px;
-  }
-
-  .reveal h2 {
-    font-size: 38px;
-    margin-bottom: 24px;
-  }
-
-  .title-grid,
-  .split,
-  .code-split {
-    gap: 28px;
-    grid-template-columns: 1fr;
-  }
-
-  .hero-visual {
-    min-height: 300px;
-  }
-
-  .screen-frame {
-    left: 0;
-    max-width: 420px;
-    right: auto;
-    top: 0;
-    width: 100%;
-  }
-
-  .workflow.large,
-  .demo-steps,
-  .icon-grid,
-  .check-list,
-  .ai-paths {
-    grid-template-columns: 1fr;
-  }
-
-  .arrow,
-  .path-divider {
-    display: none;
-  }
-
-  .ai-process {
-    flex-wrap: wrap;
-  }
-
-  .editing-example-callout {
-    gap: 12px;
-    grid-template-columns: 1fr;
-  }
-
-  .editing-example-callout p + p {
-    border-left: 0;
-    border-top: 2px solid var(--epikur-turquoise);
-    padding-top: 12px;
-  }
-
-  .clean-list li,
-  .callout,
-  .prompt-box p,
-  .big-statement {
-    font-size: 25px;
-  }
-}
-
 /* Markdown slide layout */
-.reveal .slides section.content-slide,
-.reveal .slides section.statement-slide,
-.reveal .slides section.closing-slide {
-  margin: 0 auto;
-  max-width: 1060px;
-  text-align: left;
+.reveal .slides section {
+  height: 100%;
+  padding: 42px 56px;
   width: 100%;
 }
 
+.reveal .slides section.content-slide {
+  display: flex !important;
+  flex-direction: column;
+  justify-content: center;
+  text-align: left;
+}
+
 .reveal .slides section.wide-slide {
-  max-width: 1160px;
+  padding-left: 36px;
+  padding-right: 36px;
 }
 
 .reveal .slides section.statement-slide,
 .reveal .slides section.closing-slide {
+  align-items: center;
+  display: flex !important;
+  flex-direction: column;
+  justify-content: center;
   text-align: center;
 }
 
@@ -852,8 +839,9 @@ body {
   border-left: 5px solid var(--epikur-turquoise);
   color: var(--epikur-text);
   font-size: 32px;
+  line-height: 1.32;
   font-weight: 600;
-  margin: 0 0 22px;
+  margin: 0 0 18px;
   padding-left: 22px;
 }
 
@@ -890,14 +878,95 @@ body {
   font-weight: 800;
 }
 
-/* Title slide variant used by the Markdown source */
-.reveal .slides section.title-slide {
-  margin: 0 auto;
+/* Direct Markdown children use the available stage width even without .content. */
+.reveal .slides section.content-slide > :not(aside.notes) {
+  margin-left: auto;
+  margin-right: auto;
   max-width: 1160px;
-  min-height: 600px;
+  width: 100%;
+}
+
+.reveal .slides section.content-slide.wide-slide > :not(aside.notes) {
+  max-width: 1210px;
+}
+
+.section-kicker,
+.eyebrow {
+  font-size: 18px;
+  margin-bottom: 12px;
+}
+
+.reveal .slides section.content-slide > ul {
+  margin-bottom: 10px;
+}
+
+.reveal .slides section.content-slide > ul li:last-child,
+.reveal .slides section.content-slide .split li:last-child {
+  margin-bottom: 0;
+}
+
+.callout {
+  line-height: 1.22;
+  margin-top: 18px;
+  padding: 24px 28px;
+}
+
+.reveal pre {
+  padding: 20px 22px;
+}
+
+.reveal code {
+  line-height: 1.42;
+}
+
+/* Code gets horizontal room instead of shrinking the complete slide. */
+.reveal .slides section.code-slide {
+  align-content: center;
+  column-gap: 44px;
+  display: grid !important;
+  grid-template-columns: minmax(0, 0.72fr) minmax(0, 1.28fr);
+  grid-template-rows: auto auto auto;
+}
+
+.reveal .slides section.code-slide > :not(aside.notes) {
+  margin-left: 0;
+  margin-right: 0;
+  max-width: none;
+}
+
+.reveal .slides section.code-slide > .section-kicker,
+.reveal .slides section.code-slide > h2 {
+  grid-column: 1 / -1;
+}
+
+.reveal .slides section.code-slide > ul,
+.reveal .slides section.code-slide > pre {
+  align-self: center;
+  margin-bottom: 0;
+  margin-top: 0;
+}
+
+.reveal .slides section.code-slide > ul {
+  grid-column: 1;
+}
+
+.reveal .slides section.code-slide > pre {
+  grid-column: 2;
+}
+
+/* The title uses the complete stage as a two-column hero grid. */
+.reveal .slides section.title-slide {
+  align-content: center;
+  column-gap: 64px;
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) 420px;
+  grid-template-rows: repeat(4, auto);
   position: relative;
   text-align: left;
-  width: 100%;
+}
+
+.title-slide > :not(.hero-visual, aside.notes) {
+  grid-column: 1;
 }
 
 .title-slide .subtitle {
@@ -905,87 +974,34 @@ body {
 }
 
 .title-slide .hero-visual.compact {
-  min-height: 430px;
-  position: absolute;
+  align-self: center;
+  grid-column: 2;
+  grid-row: 1 / span 4;
+  min-height: 420px;
+  position: relative;
+  right: auto;
+  top: auto;
+  width: 420px;
+}
+
+.title-slide .hero-visual.compact .screen-frame {
   right: 0;
-  top: 98px;
-  width: 440px;
+  width: 420px;
 }
 
 .title-slide .hero-visual.compact .flow-orbit {
+  bottom: 0;
   left: 0;
 }
 
-@media (max-width: 900px) {
-  .title-slide .hero-visual.compact {
-    margin-top: 28px;
-    position: relative;
-    right: auto;
-    top: auto;
-    width: 100%;
-  }
-}
-
-/* Fit safety: keep every slide inside the 16:9 presentation frame. */
-.reveal .slides section.content-slide,
-.reveal .slides section.statement-slide,
-.reveal .slides section.closing-slide,
-.reveal .slides section.title-slide {
-  max-height: 630px;
-}
-
-.reveal h2 {
-  font-size: 52px;
-  margin-bottom: 24px;
-}
-
-.section-kicker,
-.eyebrow {
-  font-size: 16px;
-  margin-bottom: 12px;
-}
-
-.reveal .slides section.content-slide > ul {
-  margin-bottom: 22px;
-}
-
-.reveal .slides section.content-slide > ul li,
-.reveal .slides section.content-slide .split li {
-  font-size: 28px;
-  line-height: 1.28;
-  margin-bottom: 14px;
-  padding-left: 18px;
-}
-
-.callout {
-  font-size: 29px;
-  line-height: 1.22;
-  margin-top: 18px;
-  padding: 24px 28px;
-}
-
-.reveal pre {
-  margin-top: 18px;
-  padding: 20px 22px;
-}
-
-.reveal code {
-  font-size: 18px;
-  line-height: 1.42;
-}
-
 .workflow {
-  margin: 12px 0 28px;
+  margin: 16px 0 32px;
 }
 
 .step {
-  font-size: 19px;
-  min-height: 78px;
-  padding: 12px;
-}
-
-.big-statement {
-  font-size: 34px;
+  font-size: 21px;
+  min-height: 86px;
+  padding: 14px;
 }
 
 .reveal .slides section.content-slide table {
@@ -1001,31 +1017,17 @@ body {
   padding: 14px 24px;
 }
 
-.prompt-box {
-  margin-bottom: 18px;
-  padding: 22px 26px;
-}
-
-.prompt-box p {
-  font-size: 27px;
-  line-height: 1.22;
-  margin-top: 14px;
-}
-
 .icon-grid {
   gap: 16px;
 }
 
 .icon-card {
-  min-height: 136px;
-  padding: 22px;
+  min-height: 150px;
+  padding: 24px;
 }
 
 .icon {
-  font-size: 24px;
-  height: 46px;
   margin-bottom: 16px;
-  width: 46px;
 }
 
 .mini-workflow {
@@ -1034,130 +1036,8 @@ body {
 }
 
 .mini-workflow span {
-  font-size: 24px;
-  padding: 15px 22px;
-}
-
-.statement-slide h2 {
-  font-size: 70px;
-  margin-bottom: 36px;
-}
-
-.closing-slide h2 {
-  font-size: 76px;
-  margin-bottom: 22px;
-}
-
-.subtitle {
-  font-size: 31px;
-  margin: 22px 0 38px;
-}
-
-.reveal h1 {
-  font-size: 82px;
-}
-
-.title-slide .hero-visual.compact {
-  top: 82px;
-  transform: scale(0.9);
-  transform-origin: top right;
-}
-
-.slide-fit {
-  transform-origin: top left;
-}
-
-.reveal .slides section.content-slide,
-.reveal .slides section.statement-slide,
-.reveal .slides section.closing-slide,
-.reveal .slides section.title-slide {
-  height: 630px;
-}
-
-/* Center the safe-area wrapper itself; keep the text inside left-aligned. */
-.slide-fit {
-  margin-left: auto;
-  margin-right: auto;
-  position: relative;
-  transform-origin: top center;
-}
-
-.reveal .slides section.content-slide,
-.reveal .slides section.statement-slide,
-.reveal .slides section.closing-slide,
-.reveal .slides section.title-slide {
-  left: auto !important;
-  right: auto !important;
-}
-
-.reveal .slides section.content-slide,
-.reveal .slides section.statement-slide,
-.reveal .slides section.closing-slide,
-.reveal .slides section.title-slide {
-  left: 0 !important;
-  margin-left: auto;
-  margin-right: auto;
-  right: 0 !important;
-}
-
-/* Unified centering pass: center the visible slide and its safe-area wrapper. */
-.reveal .slides section.present.content-slide,
-.reveal .slides section.present.statement-slide,
-.reveal .slides section.present.closing-slide,
-.reveal .slides section.present.title-slide {
-  align-items: center;
-  display: flex !important;
-  justify-content: center;
-  left: 0 !important;
-  margin-left: auto;
-  margin-right: auto;
-  right: 0 !important;
-}
-
-.slide-fit {
-  margin: 0 auto;
-  position: relative;
-  transform-origin: center center;
-}
-
-.title-slide .slide-fit {
-  align-items: center;
-  column-gap: 76px;
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) 420px;
-}
-
-.title-slide .slide-fit > :not(.hero-visual) {
-  grid-column: 1;
-}
-
-.title-slide .hero-visual.compact {
-  grid-column: 2;
-  grid-row: 1 / span 4;
-  min-height: 360px;
-  position: relative;
-  right: auto;
-  top: auto;
-  transform: none;
-  width: 420px;
-}
-
-.title-slide .hero-visual.compact .screen-frame {
-  position: relative;
-  right: auto;
-  top: auto;
-  width: 420px;
-}
-
-.title-slide .hero-visual.compact .flow-orbit {
-  bottom: -38px;
-  left: 0;
-}
-
-@media (max-width: 900px) {
-  .title-slide .slide-fit {
-    display: block;
-  }
+  font-size: 26px;
+  padding: 16px 22px;
 }
 
 /* Live demo roadmap */
@@ -1233,7 +1113,7 @@ body {
 }
 
 .demo-stage h3 {
-  font-size: 21px;
+  font-size: 22px;
   min-height: 50px;
 }
 
@@ -1309,18 +1189,4 @@ body {
   color: var(--epikur-turquoise);
   font-size: 17px;
   font-style: normal;
-}
-
-@media (max-width: 900px) {
-  .demo-roadmap {
-    grid-template-columns: 1fr;
-  }
-
-  .demo-stage:not(:last-child)::after {
-    display: none;
-  }
-
-  .demo-result-line {
-    flex-wrap: wrap;
-  }
 }

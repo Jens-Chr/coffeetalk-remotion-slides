@@ -26,6 +26,43 @@ Einstieg: Es geht nicht um ein weiteres Videotool, sondern um einen anderen Prod
 
 ---
 
+<!-- .slide: class="content-slide wide-slide agenda-slide" -->
+
+<p class="section-kicker">Überblick</p>
+
+## Agenda
+
+<div class="agenda-grid" aria-label="Agenda mit vier Kapiteln">
+  <article class="agenda-card fragment">
+    <span class="agenda-number" aria-hidden="true">01</span>
+    <h3>Warum Videos as Code?</h3>
+    <p>Abgrenzung zu KI-Videogeneratoren und klassischen Schnittprogrammen</p>
+  </article>
+
+  <article class="agenda-card fragment">
+    <span class="agenda-number" aria-hidden="true">02</span>
+    <h3>Wie funktioniert der Ansatz?</h3>
+    <p>Remotion, React und Codex im Zusammenspiel</p>
+  </article>
+
+  <article class="agenda-card fragment">
+    <span class="agenda-number" aria-hidden="true">03</span>
+    <h3>Live-Demo</h3>
+    <p>Vom Prompt zur wiederverwendbaren Video-Komponente</p>
+  </article>
+
+  <article class="agenda-card fragment">
+    <span class="agenda-number" aria-hidden="true">04</span>
+    <h3>Wo lohnt sich das?</h3>
+    <p>Einsatzfelder, Grenzen und Best Practices</p>
+  </article>
+</div>
+
+Note:
+Die Präsentation folgt einer einfachen Geschichte: Zuerst klären wir, warum dieser Ansatz überhaupt interessant ist und wie er sich von anderen Video-Workflows unterscheidet. Danach schauen wir auf Remotion und Codex, probieren den Prozess live aus und ordnen zum Schluss ein, wo er sinnvoll ist und wo nicht.
+
+---
+
 <!-- .slide: class="content-slide" -->
 
 <p class="section-kicker">Ausgangslage</p>
@@ -75,7 +112,7 @@ Diese Folie setzt das mentale Modell für die Demo. Wichtig: Codex ist Teil der 
 
 ---
 
-<!-- .slide: class="content-slide" -->
+<!-- .slide: class="content-slide code-slide" -->
 
 <p class="section-kicker">Grundlage</p>
 

@@ -30,11 +30,6 @@
     <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/notes/notes.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/highlight/highlight.js"></script>
     <script>
-      const contentSlides = () =>
-        [...document.querySelectorAll(".reveal .slides > section")].filter(
-          (section) => !section.classList.contains("stack"),
-        );
-
       const applyMarkdownFragments = () => {
         const selectors = [
           ".content-slide > ul > li",
@@ -59,64 +54,10 @@
         });
       };
 
-      const prepareFitWrappers = () => {
-        contentSlides().forEach((section) => {
-          if (section.querySelector(":scope > .slide-fit")) {
-            return;
-          }
-
-          const wrapper = document.createElement("div");
-          wrapper.className = "slide-fit";
-
-          [...section.childNodes].forEach((node) => {
-            if (node.nodeType === Node.ELEMENT_NODE && node.matches("aside.notes")) {
-              return;
-            }
-            wrapper.appendChild(node);
-          });
-
-          section.insertBefore(wrapper, section.firstChild);
-        });
-      };
-
-      const fitSlides = () => {
-        const safeHeight = 620;
-
-        contentSlides().forEach((section) => {
-          const wrapper = section.querySelector(":scope > .slide-fit");
-          if (!wrapper) {
-            return;
-          }
-
-          wrapper.style.transform = "";
-          wrapper.style.width = "";
-          wrapper.style.maxWidth = "";
-
-          const safeWidth = section.classList.contains("wide-slide") || section.classList.contains("title-slide")
-            ? 1160
-            : 1060;
-          wrapper.style.width = safeWidth + "px";
-          wrapper.style.maxWidth = "100%";
-
-          const width = Math.max(wrapper.scrollWidth, wrapper.getBoundingClientRect().width || 1);
-          const height = Math.max(wrapper.scrollHeight, wrapper.getBoundingClientRect().height || 1);
-          const scale = Math.min(1, safeWidth / width, safeHeight / height);
-
-          wrapper.style.transform = "scale(" + scale + ")";
-        });
-
-        Reveal.sync();
-      };
-
-      const prepareSlides = () => {
+      Reveal.on("ready", () => {
         applyMarkdownFragments();
-        prepareFitWrappers();
-        fitSlides();
-      };
-
-      Reveal.on("ready", prepareSlides);
-      Reveal.on("slidechanged", fitSlides);
-      window.addEventListener("resize", fitSlides);
+        Reveal.sync();
+      });
 
       Reveal.initialize({
         hash: true,
@@ -125,7 +66,9 @@
         center: true,
         width: 1280,
         height: 720,
-        margin: 0.06,
+        margin: 0.02,
+        minScale: 0.2,
+        maxScale: 2,
         transition: "slide",
         backgroundTransition: "fade",
         plugins: [RevealMarkdown, RevealNotes, RevealHighlight],
